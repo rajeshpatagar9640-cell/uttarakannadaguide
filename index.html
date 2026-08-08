@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Uttara Kannada - Tourist Guide</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        body { background-color: #f4f7f6; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .hero-banner { background: linear-gradient(rgba(0, 51, 102, 0.75), rgba(0, 51, 102, 0.75)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80'); background-size: cover; background-position: center; color: white; padding: 35px 20px; text-align: center; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; }
+        .place-card { border: none; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.2s; margin-bottom: 20px; background: white; }
+        .place-card:hover { transform: translateY(-5px); }
+        .place-img { height: 190px; object-fit: cover; }
+        .badge-tag { position: absolute; top: 10px; right: 10px; background: rgba(0, 51, 102, 0.85); color: white; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+        .discount-banner { background-color: #e3f2fd; border-left: 5px solid #003366; border-radius: 8px; padding: 15px; margin-bottom: 25px; }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="hero-banner">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="fw-bold"><i class="bi bi-geo-alt-fill text-warning"></i> Uttara Kannada</span>
+            <select class="form-select form-select-sm w-auto" id="langSelector" onchange="changeLanguage()">
+                <option value="kn">ಕನ್ನಡ</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+        <h2 id="appTitle">ಉತ್ತರ ಕನ್ನಡ ಪ್ರವಾಸಿ ಮಾರ್ಗದರ್ಶಿ</h2>
+        <p id="appSubtitle" class="small">ಮಲೆನಾಡು ಮತ್ತು ಕರಾವಳಿಯ ನೈಸರ್ಗಿಕ ತಾಣಗಳನ್ನು ಅನ್ವೇಷಿಸಿ</p>
+    </div>
+
+    <div class="container my-4">
+        <!-- Discount Offer Banner -->
+        <div class="discount-banner d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <div>
+                <h6 class="mb-1 text-primary fw-bold" id="offerTitle">🎉 ವಿಶೇಷ ರಿಯಾಯಿತಿ!</h6>
+                <p class="mb-0 small text-muted" id="offerDesc">ನಮ್ಮ ಆ್ಯಪ್ ಮೂಲಕ ಸ್ಥಳೀಯ ಕ್ಯಾಬ್ ಮತ್ತು ಹೋಂಸ್ಟೇ ಬುಕ್ ಮಾಡಿ 10% ಡಿಸ್ಕೌಂಟ್ ಪಡೆಯಿರಿ.</p>
+            </div>
+            <a href="tel:+919000000000" class="btn btn-sm btn-primary"><i class="bi bi-telephone-fill me-1"></i> Book Cab/Stay</a>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="mb-4">
+            <input type="text" id="searchInput" class="form-control form-control-lg" placeholder="ಸ್ಥಳದ ಹೆಸರು ಹುಡುಕಿ (Ex: Sirsi, Yana, Gokarna)" onkeyup="filterPlaces()">
+        </div>
+
+        <!-- Places List Grid -->
+        <div class="row" id="placesContainer">
+            
+            <!-- Sirsi Card -->
+            <div class="col-md-4 place-item" data-name="sirsi sahasralinga marikamba">
+                <div class="card place-card position-relative">
+                    <span class="badge-tag">Sirsi Region</span>
+                    <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=500&q=80" class="card-img-top place-img" alt="Sirsi">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary fw-bold">ಸಿರ್ಸಿ ಮಾರಿಕಾಂಬಾ & ಸಹಸ್ರಲಿಂಗ</h5>
+                        <p class="card-text small text-secondary">ಅಡಿಕೆ ನಗರಿ ಸಿರ್ಸಿಯ ಪ್ರಸಿದ್ಧ ಧಾರ್ಮಿಕ ಕ್ಷೇತ್ರ ಮತ್ತು ಶಾಲ್ಮಲಾ ನದಿಯ ನೈಸರ್ಗಿಕ ಸಹಸ್ರಲಿಂಗ ತಾಣ.</p>
+                        <hr>
+                        <div class="d-flex justify-content-between small text-muted mb-3">
+                            <span><i class="bi bi-clock"></i> 6:00 AM - 8:00 PM</span>
+                            <span><i class="bi bi-geo-alt"></i> Sirsi Town</span>
+                        </div>
+                        <button class="btn btn-outline-primary btn-sm w-100" onclick="openDetails('Sirsi')">ಸಂಪೂರ್ಣ ವಿವರ & ರೂಟ್</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yana Card -->
+            <div class="col-md-4 place-item" data-name="yana rocks hidden place">
+                <div class="card place-card position-relative">
+                    <span class="badge-tag">Hidden Gem</span>
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80" class="card-img-top place-img" alt="Yana">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary fw-bold">ಯಾಣ ಭೈರವೇಶ್ವರ ಶಿಖರ</h5>
+                        <p class="card-text small text-secondary">ಅರಣ್ಯದ ಮಧ್ಯದಲ್ಲಿರುವ ಅಪರೂಪದ ಕಪ್ಪು ಸುಣ್ಣದ ಕಲ್ಲಿನ ಬಂಡೆಗಳು ಹಾಗೂ ಭೈರವೇಶ್ವರ ಗವಿ.</p>
+                        <hr>
+                        <div class="d-flex justify-content-between small text-muted mb-3">
+                            <span><i class="bi bi-clock"></i> 9:00 AM - 5:00 PM</span>
+                            <span><i class="bi bi-geo-alt"></i> 25 KM from Sirsi</span>
+                        </div>
+                        <button class="btn btn-outline-primary btn-sm w-100" onclick="openDetails('Yana')">ಸಂಪೂರ್ಣ ವಿವರ & ರೂಟ್</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gokarna Card -->
+            <div class="col-md-4 place-item" data-name="gokarna beach temple">
+                <div class="card place-card position-relative">
+                    <span class="badge-tag">Coastal Region</span>
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" class="card-img-top place-img" alt="Gokarna">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary fw-bold">ಗೋಕರ್ಣ ಮಹಾಬಲೇಶ್ವರ & ಬೀಚ್</h5>
+                        <p class="card-text small text-secondary">ಮಹಾಬಲೇಶ್ವರ ದೇವಾಲಯ, ಓಂ ಬೀಚ್ ಮತ್ತು ಕುಡ್ಲೆ ಬೀಚ್‌ಗಳ ಸುಂದರ ಸಂಗಮ.</p>
+                        <hr>
+                        <div class="d-flex justify-content-between small text-muted mb-3">
+                            <span><i class="bi bi-house-door"></i> Stays Available</span>
+                            <span><i class="bi bi-geo-alt"></i> Kumta Taluk</span>
+                        </div>
+                        <button class="btn btn-outline-primary btn-sm w-100" onclick="openDetails('Gokarna')">ಸಂಪೂರ್ಣ ವಿವರ & ರೂಟ್</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Place Detail Popup Modal -->
+    <div class="modal fade" id="placeModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="modalTitle">ಸ್ಥಳದ ವಿವರ</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="modalDesc"></p>
+                    <div class="alert alert-info small">
+                        <strong><i class="bi bi-info-circle-fill"></i> ಸ್ಥಳೀಯ ಮಾರ್ಗದರ್ಶನ:</strong>
+                        <span id="modalTips"></span>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <a id="mapBtn" href="#" target="_blank" class="btn btn-success"><i class="bi bi-map-fill"></i> Google Maps ನಲ್ಲಿ ದಾರಿ ನೋಡಿ</a>
+                        <a href="tel:+919000000000" class="btn btn-outline-primary"><i class="bi bi-telephone me-1"></i> ಸ್ಥಳೀಯ ಕ್ಯಾಬ್ ಬುಕ್ ಮಾಡಿ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const detailsData = {
+            'Sirsi': {
+                title: 'ಸಿರ್ಸಿ ಶ್ರೀ ಮಾರಿಕಾಂಬಾ & ಸಹಸ್ರಲಿಂಗ',
+                desc: 'ಸಿರ್ಸಿ ಮಾರಿಕಾಂಬಾ ದೇವಾಲಯವು ಕರ್ನಾಟಕದ ಅತ್ಯಂತ ಪ್ರಸಿದ್ಧ ಶಕ್ತಿಪೀಠಗಳಲ್ಲಿ ಒಂದಾಗಿದೆ. ಇಲ್ಲಿಂದ 17 ಕಿ.ಮೀ ದೂರದಲ್ಲಿರುವ ಸಹಸ್ರಲಿಂಗದಲ್ಲಿ ಶಾಲ್ಮಲಾ ನದಿಯ ಕಲ್ಲುಗಳ ಮೇಲೆ ನೂರಾರು ಶಿವಲಿಂಗಗಳನ್ನು ಕೆತ್ತಲಾಗಿದೆ.',
+                tips: 'ಸಹಸ್ರಲಿಂಗಕ್ಕೆ ಭೇಟಿ ನೀಡಲು ಮಳೆಗಾಲದ ನಂತರದ ಸಮಯ (ಅಕ್ಟೋಬರ್ ನಿಂದ ಮಾರ್ಚ್) ಅತ್ಯುತ್ತಮ.',
+                map: 'https://maps.google.com/?q=Sirsi+Marikamba+Temple'
+            },
+            'Yana': {
+                title: 'ಯಾಣ ಭೈರವೇಶ್ವರ ಶಿಖರ (Yana Rocks)',
+                desc: 'ಯಾಣವು ಸಹ್ಯಾದ್ರಿ ಪರ್ವತ ಶ್ರೇಣಿಯ ದಟ್ಟ ಅರಣ್ಯದಲ್ಲಿದೆ. ಇಲ್ಲಿ ಭೈರವೇಶ್ವರ ಶಿಖರ ಮತ್ತು ಮೋಹಿನಿ ಶಿಖರ ಎಂಬ ಎರಡು ದೈತ್ಯ ಕಪ್ಪು ಬಂಡೆಗಳಿವೆ. ಗುಹೆಯೊಳಗೆ ಸ್ವಯಂಭೂ ಶಿವಲಿಂಗವಿದೆ.',
+                tips: 'ಸುಮಾರು 1 ಕಿ.ಮೀ ಕಾಲ್ನಡಿಗೆಯಲ್ಲಿ (Trekking) ಸಾಗಬೇಕು. ಆರಾಮದಾಯಕ ಶೂಗಳನ್ನು ಧರಿಸಿ.',
+                map: 'https://maps.google.com/?q=Yana+Rocks+Karnataka'
+            },
+            'Gokarna': {
+                title: 'ಗೋಕರ್ಣ ಮಹಾಬಲೇಶ್ವರ & ಓಂ ಬೀಚ್',
+                desc: 'ಗೋಕರ್ಣವು ಪ್ರಸಿದ್ಧ ಧಾರ್ಮಿಕ ಮತ್ತು ಪ್ರವಾಸಿ ತಾಣವಾಗಿದೆ. ಮಹಾಬಲೇಶ್ವರ ದೇವಾಲಯದಲ್ಲಿ ಪ್ರಸಿದ್ಧ ಆತ್ಮಲಿಂಗವಿದೆ. ಓಂ ಆಕಾರದಲ್ಲಿರುವ ಓಂ ಬೀಚ್ ಮತ್ತು ಕುಡ್ಲೆ ಬೀಚ್ ಪ್ರವಾಸಿಗರ ನೆಚ್ಚಿನ ತಾಣ.',
+                tips: 'ವಾಟರ್ ಸ್ಪೋರ್ಟ್ಸ್ ಮತ್ತು ಬೀಚ್ ಟ್ರೆಕ್ಕಿಂಗ್‌ಗೆ ಸೂಕ್ತ ಜಾಗ.',
+                map: 'https://maps.google.com/?q=Gokarna+Om+Beach'
+            }
+        };
+
+        function openDetails(placeKey) {
+            const data = detailsData[placeKey];
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalDesc').innerText = data.desc;
+            document.getElementById('modalTips').innerText = data.tips;
+            document.getElementById('mapBtn').href = data.map;
+            
+            var myModal = new bootstrap.Modal(document.getElementById('placeModal'));
+            myModal.show();
+        }
+
+        function filterPlaces() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let items = document.getElementsByClassName('place-item');
+            
+            for (let i = 0; i < items.length; i++) {
+                let name = items[i].getAttribute('data-name');
+                if (name.includes(input)) {
+                    items[i].style.display = "";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+
+        function changeLanguage() {
+            let lang = document.getElementById('langSelector').value;
+            if(lang === 'en') {
+                document.getElementById('appTitle').innerText = "Uttara Kannada Tourist Guide";
+                document.getElementById('appSubtitle').innerText = "Explore Malenadu & Coastal natural attractions";
+                document.getElementById('offerTitle').innerText = "🎉 Special Discount!";
+                document.getElementById('offerDesc').innerText = "Book local cabs and homestays through our app & get 10% off.";
+            } else {
+                document.getElementById('appTitle').innerText = "ಉತ್ತರ ಕನ್ನಡ ಪ್ರವಾಸಿ ಮಾರ್ಗದರ್ಶಿ";
+                document.getElementById('appSubtitle').innerText = "ಮಲೆನಾಡು ಮತ್ತು ಕರಾವಳಿಯ ನೈಸರ್ಗಿಕ ತಾಣಗಳನ್ನು ಅನ್ವೇಷಿಸಿ";
+                document.getElementById('offerTitle').innerText = "🎉 ವಿಶೇಷ ರಿಯಾಯಿತಿ!";
+                document.getElementById('offerDesc').innerText = "ನಮ್ಮ ಆ್ಯಪ್ ಮೂಲಕ ಸ್ಥಳೀಯ ಕ್ಯಾಬ್ ಮತ್ತು ಹೋಂಸ್ಟೇ ಬುಕ್ ಮಾಡಿ 10% ಡಿಸ್ಕೌಂಟ್ ಪಡೆಯಿರಿ.";
+            }
+        }
+    </script>
+</body>
+</html>
